@@ -16,5 +16,13 @@ export class UsersService {
     return this._HttpClient.post(`https://linked-posts.routemisr.com/users/signin` , signInForm)
 
   }
-
+  ChangePasswordApi = (changePasswordForm:object):Observable <any>=>{
+    return this._HttpClient.patch('https://linked-posts.routemisr.com/users/change-password' , changePasswordForm , {headers:{'token':localStorage.getItem("token")!}})
+  }
+  uploadPhotoApi=(UploadPhotoFile:object):Observable <any>=>{
+    return  this._HttpClient.put(`https://linked-posts.routemisr.com/users/upload-photo` ,UploadPhotoFile , {headers:{'token' : localStorage.getItem("token")!}}) 
+  }
+  GetLoggedUserApi =():Observable <any>=>{
+    return  this._HttpClient.get(`https://linked-posts.routemisr.com/users/profile-data` , {headers:{'token':localStorage.getItem('token')!}})
+  }
 }
